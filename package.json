@@ -1,5 +1,5 @@
 {
-  "name": "msvc-api",
+  "name": "@mggflow/msvc-api",
   "version": "1.0.0",
   "description": "Send requests to Microservice.",
   "main": "src/index.js",
