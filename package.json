@@ -1,0 +1,20 @@
+{
+  "name": "msvc-api",
+  "version": "1.0.0",
+  "description": "Send requests to Microservice.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "-"
+  },
+  "author": {
+    "name": "Pavel Eliseev",
+    "email": "deusagnis@gmail.com",
+    "homepage": "https://mggflow.in",
+    "role": "Developer"
+  },
+  "license": "MIT"
+}
