@@ -7,7 +7,7 @@ module.exports = class MsvcApi {
     objectName = null
     actionName = null
 
-    dataToSend
+    params
 
     msvcSelfObjectKey = 'it'
 
@@ -24,6 +24,8 @@ module.exports = class MsvcApi {
     postMethod = 'POST'
 
     response
+
+    preparingCallbacks = []
 
     constructor(api, msvc) {
         this.apiUrl = api
@@ -53,7 +55,7 @@ module.exports = class MsvcApi {
                 } else if (parent.isActionCall()) {
                     parent.setActionName(prop)
 
-                    return parent.setDataToSend
+                    return parent.setParams
                 }
             }
         }
@@ -89,8 +91,8 @@ module.exports = class MsvcApi {
         this.actionName = name
     }
 
-    setDataToSend(data = null) {
-        this.dataToSend = data
+    setParams(data = null) {
+        this.params = data
 
         return this.proxy
     }
@@ -130,6 +132,8 @@ module.exports = class MsvcApi {
     }
 
     async send() {
+        await this.prepareSending()
+
         this.provideFileExistence()
 
         const target = this.createRequestTarget()
@@ -143,6 +147,12 @@ module.exports = class MsvcApi {
             await this.errorsHandler(e)
 
             return false
+        }
+    }
+
+    async prepareSending(){
+        for(let preparingCallback of this.preparingCallbacks){
+            await preparingCallback(this)
         }
     }
 
@@ -182,7 +192,7 @@ module.exports = class MsvcApi {
     }
 
     createDataQuery() {
-        let params = new URLSearchParams(this.dataToSend)
+        let params = new URLSearchParams(this.params)
 
         return params.toString()
     }
@@ -206,10 +216,10 @@ module.exports = class MsvcApi {
     }
 
     dataToSendWithoutFiles() {
-        if (typeof this.dataToSend !== 'object') return true
+        if (typeof this.params !== 'object') return true
 
-        for (let key in this.dataToSend) {
-            if (this.dataToSend[key] instanceof File) {
+        for (let key in this.params) {
+            if (this.params[key] instanceof File) {
                 return false
             }
         }
@@ -241,14 +251,14 @@ module.exports = class MsvcApi {
     }
 
     createJsonBody() {
-        return JSON.stringify(this.dataToSend)
+        return JSON.stringify(this.params)
     }
 
     createFormBody() {
         const formData = new FormData()
 
-        for (let key in this.dataToSend) {
-            formData.append(key, this.dataToSend[key])
+        for (let key in this.params) {
+            formData.append(key, this.params[key])
         }
 
         return formData
