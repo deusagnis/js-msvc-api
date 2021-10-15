@@ -1,4 +1,4 @@
-module.exports = class MsvcApi {
+class MsvcApi {
     proxy
 
     apiUrl
@@ -265,3 +265,5 @@ module.exports = class MsvcApi {
     }
 
 }
+
+export default MsvcApi

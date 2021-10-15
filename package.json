@@ -1,6 +1,6 @@
 {
   "name": "@mggflow/msvc-api",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Send requests to Microservice.",
   "main": "src/index.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "author": "Pavel Eliseev <deusagnis@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mggflow/js-msvc-api/issues"
+    "url": "https://github.com/mggflow/msvc-api.js/issues"
   },
-  "homepage": "https://github.com/mggflow/js-msvc-api#readme"
+  "homepage": "https://github.com/mggflow/msvc-api.js#readme"
 }
