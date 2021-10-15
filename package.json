@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mggflow/js-msvc-api.git"
+    "url": "git+https://github.com/mggflow/msvc-api.js.git"
   },
   "author": "Pavel Eliseev <deusagnis@gmail.com>",
   "license": "MIT",
