@@ -183,7 +183,7 @@ class MsvcApi {
     createRequestTarget() {
         let target = this.createRequestUrl()
 
-        if (this.fetchSettings.method === this.getMethod) {
+        if (this.fetchSettings.method === this.getMethod && this.params !== null) {
             target += '?'
             target += this.createDataQuery()
         }
