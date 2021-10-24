@@ -24,6 +24,7 @@ class MsvcApi {
     postMethod = 'POST'
 
     response
+    decodedResponse
 
     preparingCallbacks = []
 
@@ -159,11 +160,11 @@ class MsvcApi {
     async handleResponse() {
         this.handleServerErrors()
 
-        const decodedResponse = await this.response.json()
+        this.decodedResponse = await this.response.json()
 
-        this.handleResponseErrors(decodedResponse)
+        this.handleResponseErrors()
 
-        return decodedResponse
+        return this.decodedResponse
     }
 
     handleServerErrors() {
@@ -172,10 +173,10 @@ class MsvcApi {
         }
     }
 
-    handleResponseErrors(decodedResponse) {
-        if (decodedResponse['errors'] === undefined) return
+    handleResponseErrors() {
+        if (this.decodedResponse['errors'] === undefined) return
 
-        const responseError = decodedResponse['errors'].shift()
+        const responseError = this.decodedResponse['errors'].shift()
 
         throw new Error(responseError['mess'])
     }
