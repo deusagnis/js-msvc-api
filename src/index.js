@@ -176,9 +176,11 @@ class MsvcApi {
     handleResponseErrors() {
         if (this.decodedResponse['errors'] === undefined) return
 
-        const responseError = this.decodedResponse['errors'].shift()
+        if(Array.isArray(this.decodedResponse['errors']) && this.decodedResponse['errors'].length){
+            const responseError = this.decodedResponse['errors'][0] ?? {mess: 'Failed to recognize API error'}
 
-        throw new Error(responseError['mess'])
+            throw new Error(responseError['mess'])
+        }
     }
 
     createRequestTarget() {
