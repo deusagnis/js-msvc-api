@@ -1,7 +1,9 @@
-# Client side API wrapper for laravel microservices
+## MSVC API JS
 
 ## About
-This package make wrapping to fast and easy send requests to laravel microservice API from client side code.
+This package makes wrapping to fast and easy send requests
+to [laravel microservice](https://github.com/mggflow/laravel-microservice-base) 
+API from Client side code.
 
 ## Usage
 To install:
